@@ -1,4 +1,6 @@
 import pickle
+import math
+import numpy as np
 
 # change directory to app dir
 import os
@@ -80,6 +82,21 @@ def find_jobs(skills_to_search, ids=False):
     top_jobs = jobs_score[:10]
 
     # convert to dict
+    n=10
+
+    jobs_score_sum = sum([job[1] for job in top_jobs])
+    jobs_score_sum1 = sum([math.exp(job[1]) for job in top_jobs])
+    current_sum = jobs_score_sum
+
+    # soft-max
+    for j in range(n):
+        current_sum -= top_jobs[j][1]
+        score = max(math.exp(top_jobs[j][1])/jobs_score_sum1, top_jobs[j][1]/jobs_score_sum)
+        top_jobs[j] = (top_jobs[j][0], score)
+
+    assert np.min([job[1] for job in top_jobs]) >= 0
+    assert np.max([job[1] for job in top_jobs]) <= 1
+
     top_jobs = dict(top_jobs)
 
     return top_jobs

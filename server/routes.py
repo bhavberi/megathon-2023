@@ -68,6 +68,6 @@ def llama(strig: str):
     return temo.llama_call("mbit", strig)
 
 @router.get("/llama2")
-def llama2(array: List[int]):
+def llama2(array1: int, array2: int, array3: int, array4: int, array5: int):
     import temo
-    return temo.llama_call("none", *array)
+    return temo.llama_call("none", [array1, array2, array3, array4, array5])

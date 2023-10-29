@@ -3,7 +3,7 @@ import replicate
 import os
 
 # %%
-os.environ["REPLICATE_API_TOKEN"] = "r8_1dCZ6iRppRmoW71i041hg6gLKEeIQ3j0F8Tkh"
+os.environ["REPLICATE_API_TOKEN"] = "r8_XCxwcqNNcSaSKypsSuy019JqiAnfAj74T7eE4"
 
 # %%
 # export REPLICATE_API_TOKEN=r8_1uRU0jH51c31ZmOoWkZ6exCIS7tFxrO4TI4VL
