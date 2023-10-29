@@ -40,8 +40,8 @@ def login(email, password):
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(("class name", "global-nav__branding-logo")))
     except Exception as e:
-        print("Login failed.")
-        print(e)
+        # print("Login failed.")
+        # print(e)
         return
     global logged_in
     logged_in = True
