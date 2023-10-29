@@ -7,6 +7,7 @@ def get_jobs_from_skills(profile_link):
 	# profiles = open("profiles.txt", "r").read().split("\n")
 
 	profiles=[profile_link]
+	linkedin_skills.init()
 	linkedin_skills.login(email, password)
 
 	for profile in profiles:
