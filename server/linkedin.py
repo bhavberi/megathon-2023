@@ -1,25 +1,25 @@
-import linkedin_skills
-import find_jobs
+from .linkedin_skills import *
+from .find_jobs import *
 
 def get_jobs_from_skills(profile_link):
-	email, password = linkedin_skills.load_creds()
+	email, password = load_creds()
 	# # load profile links
 	# profiles = open("profiles.txt", "r").read().split("\n")
 
 	profiles=[profile_link]
-	linkedin_skills.init()
-	linkedin_skills.login(email, password)
+	init()
+	login(email, password)
 
 	for profile in profiles:
-		skills = linkedin_skills.get_skills(profile)
-		title = linkedin_skills.get_title()
+		skills = get_skills(profile)
+		title = get_title()
 		# print(profile, skills)
-		top_jobs = find_jobs.find_jobs(skills)
+		top_jobs = find_jobs(skills)
 		print(title)
 		from pprint import pprint
 		pprint(top_jobs)
 
-	linkedin_skills.close_driver()
+	close_driver()
 	return top_jobs
 
 if __name__ == '__main__':

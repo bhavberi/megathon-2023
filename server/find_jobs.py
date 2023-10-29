@@ -4,7 +4,7 @@ import pickle
 import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-data = pickle.load(open('data.pkl', 'rb'))
+data = pickle.load(open('./data/data.pkl', 'rb'))
 id_to_skill = data['id_to_skill']
 id_to_job = data['id_to_job']
 skills = data['skills']
