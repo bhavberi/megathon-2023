@@ -43,7 +43,7 @@ async def results(id: str):
     return True
 
 @router.get('/skills')
-def report(linkedin_link: str):
+def skills(linkedin_link: str):
     os.system(f"python3 linkedin.py --profile_link={linkedin_link} > output.txt")
     fp = open("output.txt", "r")
     jobs = fp.read()

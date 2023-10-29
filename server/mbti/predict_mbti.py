@@ -194,6 +194,16 @@ def remove_pattern(input_txt, pattern):
         input_txt = re.sub(i, "", input_txt)
     return input_txt
 
+model = load('./mbti/mbti_model.joblib')
+df=pd.read_csv('./mbti/mbti_1.csv', index_col=False)
+df_clean = df
+df_clean.posts,df_clean_length=clear_text(df)
+X_train2, X_test2, y_train2, y_test2, vectorizer = split(df_clean, 0.2)
+df = pd.read_csv(
+    "./mbti/training.1600000.processed.noemoticon.csv",
+    encoding='latin-1'
+)
+df.columns = ["target", "ids", "date", "flag", "user", "text"]
 
 def main(name="Dogbook"):
     # import os
@@ -212,19 +222,6 @@ def main(name="Dogbook"):
     target_encoder.fit(personality_types)
 
     le_name_mapping = dict(zip(target_encoder.classes_, target_encoder.fit_transform(target_encoder.classes_)))
-
-    model = load('./mbti/mbti_model.joblib')
-    df=pd.read_csv('./mbti/mbti_1.csv', index_col=False)
-    df_clean = df
-    df_clean.posts,df_clean_length=clear_text(df)
-
-    X_train2, X_test2, y_train2, y_test2, vectorizer = split(df_clean, 0.2)
-
-    df = pd.read_csv(
-        "./mbti/training.1600000.processed.noemoticon.csv",
-        encoding='latin-1'
-    )
-    df.columns = ["target", "ids", "date", "flag", "user", "text"]
 
     f = df[df.iloc[:, 4].isin(df.iloc[:, 4].value_counts().index[:200])]
 
