@@ -1,5 +1,6 @@
 from os import getenv
-
+from dotenv import load_dotenv
+load_dotenv()
 from pymongo import MongoClient
 
 # get mongodb URI and database name from environment variale

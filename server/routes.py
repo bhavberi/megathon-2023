@@ -3,9 +3,10 @@ from fastapi.responses import RedirectResponse
 from fastapi.encoders import jsonable_encoder
 from typing import List
 
-from .models import Users
-from .db import db
-from .linkedin import get_jobs_from_skills
+from models import Users
+import os
+# from db import db
+# from linkedin import get_jobs_from_skills
 
 router = APIRouter()
 
@@ -41,12 +42,14 @@ async def results(id: str):
         raise HTTPException(status_code=400, detail="Couldn't find any user with the given id")
     return True
 
-@router.route('/skills/{id}}')
-def report(id: str):
-    # print(f"Collecting data for {id}")
-    user = db.users.find_one({"_id": id})
-
-    jobs = get_jobs_from_skills(user['linkedin'])
-
-    return jobs
+@router.get('/skills')
+def report(linkedin_link: str):
+    os.system(f"python3 linkedin.py --profile_link={linkedin_link} > output.txt")
+    fp = open("output.txt", "r")
+    jobs = fp.read()
+    fp.close()
+    jobs_index = jobs.find("\n{")
+    jobs = jobs[jobs_index:]
+    cleaned_string = jobs.replace("\n", "").replace("'", "\"")
+    return jsonable_encoder(cleaned_string)
 

@@ -1,5 +1,5 @@
-from .linkedin_skills import *
-from .find_jobs import *
+from linkedin_skills import *
+from find_jobs import *
 
 def get_jobs_from_skills(profile_link):
 	email, password = load_creds()
@@ -23,5 +23,9 @@ def get_jobs_from_skills(profile_link):
 	return top_jobs
 
 if __name__ == '__main__':
-	profile_link = input("Enter your linkedin profile link: ")
-	get_jobs_from_skills(profile_link)
+	# profile_link = input("Enter your linkedin profile link: ")
+	import argparse
+	parser = argparse.ArgumentParser()
+	parser.add_argument("--profile_link", help="linkedin profile link")
+	args = parser.parse_args()
+	get_jobs_from_skills(args.profile_link)

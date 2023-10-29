@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--window-size=1920,1080')
-chrome_options.add_argument('--headless')
+# chrome_options.add_argument('--headless')
 chrome_options.add_argument('--disable-gpu')
 driver = webdriver.Chrome(options=chrome_options)
 
@@ -110,7 +110,9 @@ def get_skills(profile_link):
 
 def load_creds():
     from os import getenv
-    email = getenv("LINKEDIN_EMAIL")
+    from dotenv import load_dotenv
+    load_dotenv()
+    email = getenv("LINKEDIN_USERNAME")
     password = getenv("LINKEDIN_PASSWORD")
     if email is None or password is None:
         raise Exception("Please set LINKEDIN_EMAIL and LINKEDIN_PASSWORD environment variables.")
@@ -125,7 +127,8 @@ def init():
 def main():
     init()
     # load profile links
-    profiles = open("profiles.txt", "r").read().split("\n")
+    # profiles = open("profiles.txt", "r").read().split("\n")
+    profiles=["https://www.linkedin.com/in/bhavberi"]
 
     for profile in profiles:
         skills = get_skills(profile)
