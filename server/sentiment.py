@@ -97,9 +97,9 @@ misogyny_pipeline = pipeline(
 # %%
 def calculate_score(name):
     input = collection[name]
-    sentiment = sentiment_pipeline(input, top_k=None)
-    hate = hate_pipeline(input, top_k=None)
-    misogyny = misogyny_pipeline(input, top_k=None)
+    sentiment = sentiment_pipeline(input, return_all_scores=True)
+    hate = hate_pipeline(input, return_all_scores=True)
+    misogyny = misogyny_pipeline(input, return_all_scores=True)
     hate_df = pd.DataFrame(hate)
     sentiment_df = pd.DataFrame(sentiment)
     misogyny_df = pd.DataFrame(misogyny)

@@ -1,6 +1,7 @@
 from os import getenv
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 # from db import db
 from routes import router
@@ -23,6 +24,14 @@ else:
         docs_url=None,
         redoc_url=None
     )
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 app.include_router(router, prefix="", tags=["Main Router"])
 

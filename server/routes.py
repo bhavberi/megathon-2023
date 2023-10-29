@@ -5,8 +5,7 @@ from typing import List
 
 from models import Users
 import os
-# from db import db
-# from linkedin import get_jobs_from_skills
+from db import db
 
 router = APIRouter()
 
@@ -35,12 +34,12 @@ async def big5_score(id:str, score: int):
         raise HTTPException(status_code=400, detail=f"Book with ID {id} not found")
     return {"message": "Score received!"}
 
-@router.get("/result/{id}")
-async def results(id: str):
+@router.get("/user/{id}")
+async def user(id: str):
     user = db.users.find_one({"_id": id})
     if not user:
         raise HTTPException(status_code=400, detail="Couldn't find any user with the given id")
-    return True
+    return jsonable_encoder(user)
 
 @router.get('/skills')
 def skills(linkedin_link: str):
@@ -62,3 +61,13 @@ def mbti(twitter_username: str):
 def sentiment(twitter_username: str):
     import sentiment
     return sentiment.calculate_score(twitter_username)
+
+@router.get("/llama1")
+def llama(strig: str):
+    import temo
+    return temo.llama_call("mbit", strig)
+
+@router.get("/llama2")
+def llama2(array: List[int]):
+    import temo
+    return temo.llama_call("none", *array)
