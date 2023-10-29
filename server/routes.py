@@ -5,7 +5,7 @@ from typing import List
 
 from .models import Users
 from .db import db
-from .skills.linkedin import get_jobs_from_skills
+from .linkedin import get_jobs_from_skills
 
 router = APIRouter()
 
@@ -22,7 +22,8 @@ async def new_user(user: Users = Body(...)):
     user = jsonable_encoder(user)
     result = db.users.insert_one(user)
     if result.inserted_id:
-        return RedirectResponse(url=f"/?{id}")
+        # return RedirectResponse(url=f"/?{id}")
+        return RedirectResponse(url=f"/")
     
     raise HTTPException(status_code=400, detail="Some Error occured while creating entry. Please check the data!")
 
@@ -48,5 +49,4 @@ def report(id: str):
     jobs = get_jobs_from_skills(user['linkedin'])
 
     return jobs
-
 
