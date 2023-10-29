@@ -2,12 +2,7 @@ import React, { useEffect } from 'react';
 import { get_personality, setBarsAndComments, set_jobs } from './api';
 import { useNavigate } from 'react-router-dom';
 
-function Landing({
-  setPersonality,
-  setSentiment,
-  setComments,
-  setJobs
-}) {
+function Landing({setTwitterUsername, setLinkedinUsername}) {
 
   const navigate = useNavigate();
   async function handleSubmit(e) {
@@ -18,12 +13,14 @@ function Landing({
     // get linkedin username
     const linkedin_username = document.querySelector('#linkedinID').value;
     console.log(linkedin_username);
-    const personality_title = await get_personality(twitter_username)
-    setPersonality(personality_title);
-    console.log(personality_title);
 
-    setBarsAndComments(twitter_username, setSentiment, setComments)
-    set_jobs(setJobs)
+    setTwitterUsername(twitter_username)
+    setLinkedinUsername(linkedin_username)
+
+    // get_personality(twitter_username, setPersonality)
+
+    // setBarsAndComments(twitter_username, setSentiment, setComments)
+    // set_jobs(setJobs, linkedin_username)
 
     navigate('/dashboard');
   }
@@ -34,7 +31,7 @@ function Landing({
           <div className="col">
             <nav aria-label="breadcrumb" className="bg-light rounded-3 p-3 mb-4">
               <ol className="breadcrumb mb-0">
-                <li className="breadcrumb-item active" aria-current="page">User Profile</li>
+                <li className="breadcrumb-item active" aria-current="page">Home</li>
               </ol>
             </nav>
           </div>

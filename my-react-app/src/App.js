@@ -10,23 +10,15 @@ import { useState } from 'react';
 
 
 function App() {
-  const [personality, setPersonality] = useState(["", ""]);
-  const [sentiment, setSentiment] = useState({
-  })
-  const [comments, setComments] = useState([
+  const [twitterUsername, setTwitterUsername] = useState("")
+  const [linkedinUsername, setLinkedinUsername] = useState("")
 
-  ])
-  const [jobs, setJobs] = useState(
-    {
-      "Soft engg": 1.0,
-      "Data engg": 0.5,
-      "Data scientist": 0.2,
-    })
+  window.document.title = "Profile Analyzer"
 
   return <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Landing setPersonality={setPersonality} setSentiment={setSentiment} setComments={setComments} setJobs={setJobs} />} />
-      <Route path="/dashboard" element={<Dashboard personality={personality} comments={comments} sentiment={sentiment} jobs={jobs} />} />
+      <Route path="/" element={<Landing setTwitterUsername={setTwitterUsername} setLinkedinUsername={setLinkedinUsername} />} />
+      <Route path="/dashboard" element={<Dashboard twitterUsername={twitterUsername} linkedinUsername={linkedinUsername} />} />
     </Routes>
   </BrowserRouter>
 
