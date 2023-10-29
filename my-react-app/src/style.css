@@ -1,0 +1,32 @@
+body {
+    font: 16px/1.5em Lato, sans-serif;
+  }
+  /* .pull-left-up {
+    margin: 0 20px 0 40px;
+    width: 80px;
+  }
+  .pull-left {
+    margin: 0 20px 0 0;
+    width: 80px;
+  }
+  .pull-right {
+    margin: 0 0 0 20px;
+    width: 80px;
+  } */
+  .progress {
+    position: relative;
+  }
+  .center-bar {
+    border-left: 1px dashed #fff;
+    height: 100%;
+    left: 50%;
+    position: absolute;
+  }
+  @media (min-width: 992px) {
+    ol li {
+      float: left;
+      margin-bottom: 1em;
+      width: 50%;
+    }
+  }
+  
