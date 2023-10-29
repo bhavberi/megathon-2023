@@ -39,8 +39,9 @@ def login(email, password):
         # confirm login
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(("class name", "feed-identity-module")))
-    except:
+    except Exception as e:
         print("Login failed.")
+        print(e)
         return
     global logged_in
     logged_in = True
