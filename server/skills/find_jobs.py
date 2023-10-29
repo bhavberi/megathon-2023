@@ -1,5 +1,9 @@
 import pickle
 
+# change directory to app dir
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 data = pickle.load(open('data.pkl', 'rb'))
 id_to_skill = data['id_to_skill']
 id_to_job = data['id_to_job']
