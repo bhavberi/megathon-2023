@@ -1,5 +1,5 @@
 Steps to start:
 
 ```
-docker-compose up --build
+python3 server/main.py
 ```

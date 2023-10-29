@@ -53,3 +53,12 @@ def report(linkedin_link: str):
     cleaned_string = jobs.replace("\n", "").replace("'", "\"")
     return jsonable_encoder(cleaned_string)
 
+@router.get('/mbti')
+def mbti(twitter_username: str):
+    import mbti.predict_mbti as predict_mbti
+    return predict_mbti.main(twitter_username)
+
+@router.get("/sentiment")
+def sentiment(twitter_username: str):
+    import sentiment
+    return sentiment.calculate_score(twitter_username)

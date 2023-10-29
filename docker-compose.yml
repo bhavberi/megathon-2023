@@ -15,13 +15,21 @@ services:
       - ./.env
     restart: unless-stopped
 
-  server:
-    build: ./server
-    env_file:
-      - ./.env
-    ports:
-      - 80:80
-    volumes:
-      - ./server:/code/app
-    depends_on:
-      - mongo
+  # server:
+  #   build: ./server
+  #   env_file:
+  #     - ./.env
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     - ./server:/code/app
+  #   depends_on:
+  #     - mongo
+  #     - chrome
+
+  # chrome:
+  #   image: selenium/standalone-chrome:latest
+  #   ports:
+  #     - 4444:4444
+  #   # depends_on:
+  #   #   - server
