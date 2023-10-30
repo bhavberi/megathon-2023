@@ -1,0 +1,1 @@
+Download the csv file from [here](https://raw.githubusercontent.com/crwong/cs224u-project/master/data/sentiment/training.1600000.processed.noemoticon.csv)

@@ -1,5 +1,6 @@
 Steps to start:
 
 ```
-python3 server/main.py
+cd server
+python3 main.py
 ```

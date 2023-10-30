@@ -1,2 +1,4 @@
 .env
 __pycache__
+datasets/
+server/mbti/training.1600000.processed.noemoticon.csv
